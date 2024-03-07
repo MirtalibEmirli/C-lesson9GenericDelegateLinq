@@ -1,23 +1,129 @@
 ﻿// 
 using C_lesson9Generic.Extensionmethoods;
+using C_lesson9Generic.Models;
 using System.Collections;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.XPath;
 
 
+ProgramDocumentcs a = new ProgramDocumentcs();
 
 
 
- 
+/*
+ Task:
+
+ 1. DocumentProgram adinda bir class yaradin hansi ki icinde uc metod var:
+
+	- OpenDocument 
+	- EditDocument (virtual)
+	- SaveDocument (virtual)
+
+	Her uc metod voiddir ve ekrana acagidakilari cixardirlar.
+	
+	1. Document Opened
+	2. Can Edit in Pro and Expert versions
+	3. Can Save in Pro and Expert versions
+
+ 2. ProDocumentProgram adinda bir class yaradin hansi ki DocumentProgram classindan miras alir ve ekrana asagidakilari cixardir:
+	
+	1. Document Opened
+	2. Document Edited (burda override elediyiniz metodu seald edirsiniz)
+	3. Document Saved in doc format, for pdf format buy Expert packet
+
+3. ExpertDocument adinda bir class yaradin hansi ki ProDocumentProgram classindan miras alir ve ekrana asagidakilari cixardir:
+
+	1. Document Opened
+	2. Document Edited
+	3. Document Saved in pdf format
+
+4. Program ise duse zaman userden acar daxil etmeyini isteyirsiniz. Acarlar basic, pro ve expert sozleridir. Qebul elediyiniz acara uygun olaraq muvafiq obyektleri yaradirsiniz:
+	
+	basic = DocumentProgram
+	pro = ProDocumentProgram 
+	expert = ExpertDocument 
+
+ve OpenDocument, EditDocument, SaveDocument metodlarini cagirirsiniz;
+
+Qeyd: Qebul olunan acara gore yaradilan obyektler DocumentProgram classina upcast olunmalidir. Meselen asagidaki kimi
+
+	DocumentProgram docProgram = new ProDocumentProgram(); ve ya 
+	DocumentProgram docProgram = new ExpertDocument ();
 
 
+Ugurlar...
+*/
+while (true)
+{
+
+    Console.Clear();
+
+    Console.ForegroundColor = ConsoleColor.Green;
+
+    Console.WriteLine("Welcome ");
+    Console.ForegroundColor = ConsoleColor.White;
 
 
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine(@"
+[1] => basic
+[2] =>pro
+[3] =>expert
+[0] =>exit
+");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write("Enter your Choice => ");
+
+    int s = Convert.ToInt32(Console.ReadLine());
 
 
+    switch (s)
+    {
+        case 1:
+
+            DocumentProgram docProgram1 = new DocumentProgram("Doc", "basic", "Miri", DateTime.Now, "DocProgram");
+            docProgram1.Show();
+            docProgram1.OpenDocument();
+            docProgram1.EditDocument();
+            docProgram1.SaveDocument();
+            docProgram1.Dispose();
+            Thread.Sleep(2500);
+
+            break;
+
+        case 2:
+            DocumentProgram docProgram2 = new ProgramDocumentcs("Doc", "basic", "Miri", DateTime.Now, "DocProgram");
+            docProgram2.Show();
+            docProgram2.OpenDocument();
+            docProgram2.EditDocument();
+            docProgram2.SaveDocument();
+            docProgram2.Dispose();
+            Thread.Sleep(2500);
+            break;
+
+        case 3:
+            DocumentProgram docProgram3 = new ExpertDocument("Doc", "basic", "Miri", DateTime.Now, "DocProgram");
+            docProgram3.Show();
+            docProgram3.OpenDocument();
+            docProgram3.EditDocument();
+            docProgram3.SaveDocument();
+            docProgram3.Dispose();
+            Thread.Sleep(2500);
+
+            break;
+
+        case 0:
+            Console.WriteLine("BYe");
+            Thread.Sleep(2500);
+
+            return;
+
+        default:
+            break;
+    }
 
 
-
+}
 
 
 
